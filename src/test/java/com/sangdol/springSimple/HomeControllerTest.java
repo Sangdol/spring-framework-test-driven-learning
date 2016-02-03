@@ -63,4 +63,13 @@ public class HomeControllerTest {
                 .andExpect(jsonPath("$.Hello").value("sangdol"))
                 .andReturn();
     }
+
+    /**
+     * http://stackoverflow.com/a/31700674/524588
+     */
+    @Test
+    public void testCaseSensitivity() throws Exception {
+        this.mockMvc.perform(get("/home/MAP").param("name", "sangdol"))
+                .andExpect(status().isNotFound());
+    }
 }
