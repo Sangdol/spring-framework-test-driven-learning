@@ -1,3 +1,4 @@
+import lombok.Getter;
 import org.junit.Test;
 import org.springframework.core.convert.support.DefaultConversionService;
 import org.springframework.core.convert.support.GenericConversionService;
@@ -30,4 +31,27 @@ public class ConverterTest {
         assertThat(list.get(2), is("Three"));
         assertThat(list.size(), is(3));
     }
+
+    @Getter
+    public static class Person {
+        private int id;
+
+        public Person(int id) {
+            this.id = id;
+        }
+
+        // Used by IdToEntityConverter
+        @SuppressWarnings("unused")
+        public static Person findPerson(int id) {
+            return new Person(id);
+        }
+    }
+
+    @Test
+    public void idToEntityConverterTest() throws Exception {
+        String id = "1";
+
+        Person person = conversionService.convert(id, Person.class);
+        assertThat(person.getId(), is(1));
+   }
 }
