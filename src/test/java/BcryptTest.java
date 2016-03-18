@@ -1,6 +1,8 @@
 import org.junit.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -23,4 +25,10 @@ public class BcryptTest {
         assertTrue(hashed.startsWith("$2a$11$"));
     }
 
+    @Test
+    public void notMatchingTest() throws Exception {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        // Log - WARNING: Encoded password does not look like BCrypt
+        assertThat(encoder.matches("abc", "hash"), is(false));
+    }
 }
