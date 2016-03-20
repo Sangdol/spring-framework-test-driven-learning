@@ -22,20 +22,12 @@ public class CronTest {
     @Test
     public void questionMarkTest() throws Exception {
         CronSequenceGenerator generator = new CronSequenceGenerator("0 0 * * * *");
-        Date next = generator.next(dateOf(2016, 3, 18, 0, 0, 1));
-        assertThat(date(next), is(LocalDateTime.of(2016, 3, 18, 1, 0, 0)));
+        Date next = generator.next(DateHelper.dateOf(2016, 3, 18, 0, 0, 1));
+        assertThat(DateHelper.toLocalDateTime(next), is(LocalDateTime.of(2016, 3, 18, 1, 0, 0)));
 
         generator = new CronSequenceGenerator("0 0 * * * ?");
-        next = generator.next(dateOf(2016, 3, 18, 0, 0, 1));
-        assertThat(date(next), is(LocalDateTime.of(2016, 3, 18, 1, 0, 0)));
-    }
-
-    private LocalDateTime date(Date date) {
-        return LocalDateTime.ofInstant(date.toInstant(), ZoneId.of("Z"));
-    }
-
-    private Date dateOf(int year, int month, int day, int hour, int minute, int second) {
-        return Date.from(ZonedDateTime.of(year, month, day, hour, minute, second, 0, ZoneId.of("Z")).toInstant());
+        next = generator.next(DateHelper.dateOf(2016, 3, 18, 0, 0, 1));
+        assertThat(DateHelper.toLocalDateTime(next), is(LocalDateTime.of(2016, 3, 18, 1, 0, 0)));
     }
 
 }
