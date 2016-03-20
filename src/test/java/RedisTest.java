@@ -5,6 +5,8 @@ import org.springframework.data.redis.core.*;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.LinkedHashSet;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -31,8 +33,12 @@ public class RedisTest {
         BoundHashOperations<String, String, String> bho = redis.boundHashOps("HASH");
         bho.put("key1", "val1");
         bho.put("key2", "val2");
+        bho.put("key3", "val3");
 
-        assertThat(bho.keys().size(), is(2));
+        assertThat(bho.keys().size(), is(3));
+
+        LinkedHashSet<String> orderdKeys = new LinkedHashSet<>(bho.keys());
+        assertThat(orderdKeys.iterator().next(), is("key1"));
     }
 
 }
