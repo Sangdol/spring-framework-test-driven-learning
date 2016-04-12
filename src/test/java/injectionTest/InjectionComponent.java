@@ -7,5 +7,5 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class InjectionComponent {
-    public int id = 1;
+    int id = 1;
 }

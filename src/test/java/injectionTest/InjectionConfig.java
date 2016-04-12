@@ -16,4 +16,14 @@ public class InjectionConfig {
         return bean;
     }
 
+    @Bean
+    public Pojo pojo() {
+        return new Pojo();
+    }
+
+    @Bean
+    Pojo protectedPojo() {
+        return new Pojo();
+    }
+
 }

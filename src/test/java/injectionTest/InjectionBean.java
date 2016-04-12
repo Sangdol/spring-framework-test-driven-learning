@@ -5,6 +5,6 @@ package injectionTest;
  */
 public class InjectionBean {
 
-    public InjectionComponent component;
+    InjectionComponent component;
 
 }

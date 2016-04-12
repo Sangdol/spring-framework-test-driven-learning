@@ -17,11 +17,22 @@ import static org.junit.Assert.assertThat;
 public class InjectionConfigTest {
 
     @Autowired
-    private InjectionBean bean;
+    InjectionBean bean;
+
+    @Autowired
+    Pojo pojo;
+
+    @Autowired
+    Pojo protectedPojo;
 
     @Test
     public void injectTest() throws Exception {
         assertThat(bean.component.id, is(1));
+    }
+
+    @Test
+    public void pojoBeanTest() throws Exception {
+        assertThat(pojo.component.id, is(1));
     }
 
 }
