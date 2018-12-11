@@ -17,6 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * http://docs.spring.io/spring/docs/current/spring-framework-reference/html/integration-testing.html#spring-mvc-test-framework
  *
  * TODO Create integration test for learning configurations
+ * TODO ExceptionController test https://stackoverflow.com/a/33311231/524588
  */
 public class HomeControllerTest {
 
